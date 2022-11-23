@@ -1,9 +1,9 @@
 import React, {ChangeEvent, useState} from "react";
 
-
 function Rating() {
 
     let [value, setValue] = useState<number>(0)
+
 
     return (
         <div>
