@@ -1,29 +1,37 @@
-import React from 'react';
+import React, {useState} from 'react';
 
 
-function Accordion(props:any) {
+function Accordion(props: any) {
+
+    let [visibility, setVisibility] = useState<boolean>(true)
+
+    const changeButtonVisability = () => {
+        setVisibility(!visibility)
+    }
+
     return (
         <div>
-            <AccordionTitle accordionTitle={props.title}/>
-            <AccordionBody />
+            <button onClick={changeButtonVisability}> Menu</button>
+            <AccordionBody visibility={visibility}/>
         </div>
     )
 }
 
-function AccordionTitle(props:any) {
-    return (
-        <h3>{props.accordionTitle}</h3>
-    )
+type AccordionBodyPropsType = {
+    visibility: boolean
 }
 
-function AccordionBody() {
-    return (
-        <ul>
-            <li>1</li>
-            <li>2</li>
-            <li>3</li>
-        </ul>
-    )
+function AccordionBody(props: AccordionBodyPropsType) {
+    if (props.visibility) {
+        return (
+            <ul>
+                <li> one</li>
+                <li> two</li>
+                <li> three</li>
+            </ul>
+        )
+    }
+    return <></>
 }
 
 
