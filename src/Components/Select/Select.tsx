@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {KeyboardEvent, useState} from 'react';
 import s from './select.module.css'
 
 type ItemType = {
@@ -15,14 +15,22 @@ type PropsType = {
 const Select = (props: PropsType) => {
 
     const [collapsed, setCollapsed] = useState<boolean>(false)
-    const [hoveredTitle, setHoveredTitle] = useState<string>('1')
+    const [hoveredTitle, setHoveredTitle] = useState<string>(props.activeValue)
     const selectedItem = props.items.find(t=>t.value === props.activeValue)
 
     const setVisibility = () => setCollapsed(!collapsed)
-
+    const onKeyUpHandler = (e:KeyboardEvent<HTMLDivElement>) => {
+        if(e.key === 'Enter') {
+            for (let i = 0; i < props.items.length; i++) {
+                if (hoveredTitle === props.items[i].value) {
+                    setHoveredTitle(props.items[i + 1].value)
+                }
+            }
+        }
+    }
 
     return (
-        <span className={s.selectBody}>
+        <div className={s.selectBody} onKeyUp={onKeyUpHandler} tabIndex={0}>
             <span className={s.selectActiveTitle} onClick={setVisibility}>{selectedItem && selectedItem.title}
                 <span className={s.triangle + ' '+ (collapsed ? s.triangleBottom : s.triangleTop )}></span>
             </span>
@@ -51,7 +59,7 @@ const Select = (props: PropsType) => {
 
                 </div>
             }
-        </span>
+        </div>
     )
         ;
 };
