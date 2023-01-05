@@ -3,6 +3,11 @@
     border: 1px solid black;
     padding: 10px;
     margin-left: 10px;
+    cursor: pointer;
+}
+
+.selectTitles {
+    cursor: pointer;
 }
 
 .selectActiveTitle {
@@ -10,5 +15,36 @@
     border: 1px solid black;
     padding: 5px 5px;
     margin-bottom: 10px;
-    min-width: 100px;
+    min-width: 120px;
+    position: relative;
+}
+
+.normalTitle{
+    border: 1px solid black;
+    margin: 1px;
+}
+
+.hoveredTitle {
+    background-color: deepskyblue;
+    color: white
+}
+
+
+.triangle {
+    display: inline-block;
+    position: absolute;
+    right: 10px;
+}
+
+.triangleTop {
+    border: 10px solid transparent;
+    border-top: 10px solid deepskyblue;
+    top: 10px;
+
+}
+
+.triangleBottom {
+    border: 10px solid transparent;
+    border-bottom: 10px solid deepskyblue;
+    top: 2px;
 }
