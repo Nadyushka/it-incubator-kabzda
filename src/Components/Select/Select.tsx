@@ -8,21 +8,22 @@ type ItemType = {
 
 type PropsType = {
     items: ItemType[]
-    activeTitle: string | null
-    setActiveTitle: (newTitle: string) => void
+    activeValue: string
+    setActiveValue: (newTitle: string) => void
 }
 
 const Select = (props: PropsType) => {
 
     const [collapsed, setCollapsed] = useState<boolean>(false)
-    const [hoveredTitle, setHoveredTitle] = useState<string>('Minsk')
+    const [hoveredTitle, setHoveredTitle] = useState<string>('1')
+    const selectedItem = props.items.find(t=>t.value === props.activeValue)
 
     const setVisibility = () => setCollapsed(!collapsed)
 
 
     return (
         <span className={s.selectBody}>
-            <span className={s.selectActiveTitle} onClick={setVisibility}>{props.activeTitle}
+            <span className={s.selectActiveTitle} onClick={setVisibility}>{selectedItem && selectedItem.title}
                 <span className={s.triangle + ' '+ (collapsed ? s.triangleBottom : s.triangleTop )}></span>
             </span>
             {collapsed &&
@@ -30,16 +31,16 @@ const Select = (props: PropsType) => {
                     {props.items.map(i => {
 
                             const setActiveTitleOnClick = () => {
-                                props.setActiveTitle(i.title)
+                                props.setActiveValue(i.value)
                                 setVisibility()
                             }
 
                             return (
                                 <div
-                                    className={hoveredTitle === i.title ? s.hoveredTitle : s.normalTitle}
+                                    className={hoveredTitle === i.value ? s.hoveredTitle : s.normalTitle}
                                     onClick={setActiveTitleOnClick}
                                     onMouseOver={() => {
-                                        setHoveredTitle(i.title);
+                                        setHoveredTitle(i.value);
                                        // props.setActiveTitle(i.title)
                                     }
                                     }

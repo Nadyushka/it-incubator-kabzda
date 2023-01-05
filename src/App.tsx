@@ -5,7 +5,7 @@ import Select from './Components/Select/Select';
 
 function App() {
 
-    const [activeTitle,setActiveTitle] = useState<string>('Minsk')
+    const [activeValue,setActiveValue] = useState<string>('1')
 
     return (
         <div className="App">
@@ -13,8 +13,8 @@ function App() {
 
 
             <Select
-                activeTitle={activeTitle}
-                setActiveTitle={setActiveTitle}
+                activeValue={activeValue}
+                setActiveValue={setActiveValue}
                 items={[
                 {value: '1', title: 'Minsk'},
                 {value: '2', title: 'Moscow'},
